@@ -1,6 +1,26 @@
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
+
+# Carpeta idea
+.idea/
+
 .DS_Store
 /build
+
+# Archivos compilados
+*.apk
+*.ap_
+
+# Archivos generados
+bin/
+gen/
+
+# Archivos de log
+*.log
+
+# Editor de archivos temporales del Android Studio Navigation
+.navigation/
+
+# Carpetas de capturas de Android Studio
+captures/
+
