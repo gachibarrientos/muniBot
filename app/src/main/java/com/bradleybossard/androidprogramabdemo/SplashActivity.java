@@ -33,8 +33,9 @@ public class SplashActivity extends Activity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
+
                         startActivity(new Intent(getBaseContext(),
-                                LoginActivity.class));
+                                MainActivity.class));
                         finish();
                     }
                 }
