@@ -11,12 +11,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Console;
+
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+
+    private static String staticEmail = "gabrielbarrientos31@gmail.com";
+    private static String staticContra = "123gabriel";
 
     @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;
@@ -52,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.d(TAG, "Ingresar");
 
         if (!validate()) {
+            Log.i("msg", "dentro del metodo validate en false");
             onLoginFailed();
             return;
         }
@@ -64,28 +70,38 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Verificando...");
         progressDialog.show();
 
-        String email = _emailText.getText().toString();
-        String contraseña = _passwordText.getText().toString();
+        final String email = _emailText.getText().toString();
+        final String contraseña = _passwordText.getText().toString();
+            // Aquí implementar la lógica de autenticación
+        if(email.matches(staticEmail) && contraseña.matches(staticContra)) {
+            Log.i("msg", "dentro del if en true");
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            // Al completar llamar al método correspondiente
+                            onLoginSuccess();
+                            //onLoginFailed();
+                            progressDialog.dismiss();
+                        }
+                    }, 3000);
+        }
+        else{
+            Log.i("msg", "dentro del else");
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            // Al completar llamar al método correspondiente
+                            onLoginFailed();
+                            progressDialog.dismiss();
+                        }
+                    }, 3000);
+        }
 
-        // Aquí implementar la lógica de autenticación
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // Al completar llamar al método correspondiente
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
     }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
-
                 // Aquí implementar la lógica de registro
                 // By default we just finish the Activity and log them in automatically
                 this.finish();
@@ -101,6 +117,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
+        startActivity(new Intent(getBaseContext(),
+                MainActivity.class));
         finish();
     }
 
