@@ -34,7 +34,7 @@ public class SplashActivity extends Activity {
                         e.printStackTrace();
                     } finally {
                         startActivity(new Intent(getBaseContext(),
-                                MainActivity.class));
+                                LoginActivity.class));
                         finish();
                     }
                 }
