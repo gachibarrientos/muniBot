@@ -24,6 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_signup) Button _signupButton;
     @Bind(R.id.link_login) TextView _loginLink;
+    @Bind(R.id.input_apellido) EditText _apellidoText;
+    @Bind(R.id.input_edad) EditText _edadText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,8 @@ public class RegisterActivity extends AppCompatActivity {
         progressDialog.show();
 
         String nombre = _nameText.getText().toString();
+        String apellido = _apellidoText.getText().toString();
+        String edad = _edadText.getText().toString();
         String email = _emailText.getText().toString();
         String contraseña = _passwordText.getText().toString();
 
@@ -97,6 +101,8 @@ public class RegisterActivity extends AppCompatActivity {
         boolean valid = true;
 
         String name = _nameText.getText().toString();
+        String apellido = _apellidoText.getText().toString();
+        String edad = _edadText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
@@ -105,6 +111,12 @@ public class RegisterActivity extends AppCompatActivity {
             valid = false;
         } else {
             _nameText.setError(null);
+        }
+        if (apellido.isEmpty() || apellido.length() < 3) {
+            _apellidoText.setError("Por lo menos 3 caracteres");
+            valid = false;
+        } else {
+            _apellidoText.setError(null);
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
