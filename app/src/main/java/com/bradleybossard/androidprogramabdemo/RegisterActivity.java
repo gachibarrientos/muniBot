@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         String nombre = _nameText.getText().toString();
         String apellido = _apellidoText.getText().toString();
-        String edad = _edadText.getText().toString();
+        int edad = Integer.parseInt(_edadText.getText().toString());
         String email = _emailText.getText().toString();
         String contraseña = _passwordText.getText().toString();
 
@@ -102,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         String name = _nameText.getText().toString();
         String apellido = _apellidoText.getText().toString();
-        String edad = _edadText.getText().toString();
+        int edad = Integer.parseInt(_edadText.getText().toString());
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
