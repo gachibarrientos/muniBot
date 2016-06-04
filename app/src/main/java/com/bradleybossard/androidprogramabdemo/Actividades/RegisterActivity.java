@@ -1,4 +1,4 @@
-package com.bradleybossard.androidprogramabdemo;
+package com.bradleybossard.androidprogramabdemo.Actividades;
 
 /**
  * Created by Gachi on 2/6/2016.
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bradleybossard.androidprogramabdemo.R;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;

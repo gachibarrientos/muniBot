@@ -1,4 +1,4 @@
-package com.bradleybossard.androidprogramabdemo;
+package com.bradleybossard.androidprogramabdemo.Actividades;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bradleybossard.androidprogramabdemo.R;
 
 import org.alicebot.ab.Bot;
 import org.alicebot.ab.Chat;

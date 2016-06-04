@@ -1,4 +1,4 @@
-package com.bradleybossard.androidprogramabdemo;
+package com.bradleybossard.androidprogramabdemo.Actividades;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Console;
+import com.bradleybossard.androidprogramabdemo.R;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static String staticEmail = "gabrielbarrientos31@gmail.com";
     private static String staticContra = "123gabriel";
+    private static int staticEdad = 23;
 
     @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;

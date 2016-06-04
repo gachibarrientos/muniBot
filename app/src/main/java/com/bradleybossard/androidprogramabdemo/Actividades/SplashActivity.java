@@ -1,16 +1,13 @@
-package com.bradleybossard.androidprogramabdemo;
+package com.bradleybossard.androidprogramabdemo.Actividades;
 
 /**
  * Created by Gachi on 26/4/2016.
  */
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 
-import org.alicebot.ab.*;
-
-import java.io.File;
+import com.bradleybossard.androidprogramabdemo.R;
 
 public class SplashActivity extends Activity {
 
