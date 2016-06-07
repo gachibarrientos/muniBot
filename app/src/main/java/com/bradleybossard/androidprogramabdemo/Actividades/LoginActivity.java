@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    private void Invitado() {
+     private void Invitado() {
         btn_invitado.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.AppTheme_Dark_Dialog);
@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }, 3000);
     }
+
     public void onInvitadoSuccess() {
         btn_invitado.setEnabled(true);
         startActivity(new Intent(getBaseContext(),

@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
  * Created by Gachi on 7/6/2016.
  */
 public class InvitadoActivity extends AppCompatActivity{
+
     private FuzzyActivity f;
     private Integer edad;
     private Float educ;
@@ -37,8 +38,10 @@ public class InvitadoActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invitado);
-         f= new FuzzyActivity(this);
         ButterKnife.bind(this);
+
+        f= new FuzzyActivity(this);
+
         radioEducacion.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -57,6 +60,7 @@ public class InvitadoActivity extends AppCompatActivity{
                 }
             }
         });
+
        radioEduAno.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
