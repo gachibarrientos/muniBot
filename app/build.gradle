@@ -36,4 +36,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.android.support:design:22.2.0'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile files('C:/Users/Gachi/AndroidStudioProjects/muniBotOK/app/libs/jFuzzyLogic.jar')
+
 }
