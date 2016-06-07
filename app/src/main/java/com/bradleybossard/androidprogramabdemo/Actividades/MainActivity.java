@@ -34,6 +34,12 @@ public class MainActivity extends Activity {
     EditText txtRequest;
     TextView lblResponse;
     Button btnOk, btnReconoce;
+
+    /*Habría que cargar 3 bots.. un munibotBajo, munibotMedio, munibotAlto
+    y dependiendo de lo que obtenemos de nivel con el controlador difuso
+    darle el nombre aquí sobre qué bot cargar..
+    */
+
     String botname = "munibot";
     TextToSpeech t1;
     Locale spanish = new Locale("es", "ES");
