@@ -9,6 +9,7 @@ public class User {
     private int edad;
     private String email;
     private String contraseña;
+    private float educ;
 
     public User(String nombre, String contraseña, String email, int edad, String apellido) {
         this.nombre = nombre;
@@ -20,7 +21,10 @@ public class User {
 
     public User() {
     }
-
+    public User(int edad, float educ){
+        this.edad = edad;
+        this.educ = educ;
+    }
     public String getApellido() {
         return apellido;
     }

@@ -53,6 +53,14 @@
             android:padding="12dp"
             android:text="Ingresar"/>
 
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_Invitado"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:text="Ingresar como invitado"/>
         <TextView android:id="@+id/link_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

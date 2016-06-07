@@ -16,7 +16,7 @@ public class FuzzyActivity {
         this.context = context;
     }
 
-    public double FuzzyEngine(Integer edad, Integer educacion) throws Exception {
+    public double FuzzyEngine(Integer edad, float educacion) throws Exception {
         // Load from 'FCL' file
         InputStream inputStream = context.getAssets().open("chat.fcl");
         FIS fis = FIS.load(inputStream, true);

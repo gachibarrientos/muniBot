@@ -28,12 +28,21 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_signup) TextView _signupLink;
+    @Bind(R.id.btn_Invitado) Button btn_invitado;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        btn_invitado.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Invitado();
+            }
+        });
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -52,6 +61,30 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
+    }
+    private void Invitado() {
+        btn_invitado.setEnabled(false);
+
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Ingresando como invitado...");
+        progressDialog.show();
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        // Al completar llamar al método correspondiente
+                        onInvitadoSuccess();
+                        //onLoginFailed();
+                        progressDialog.dismiss();
+                    }
+                }, 3000);
+    }
+    public void onInvitadoSuccess() {
+        btn_invitado.setEnabled(true);
+        startActivity(new Intent(getBaseContext(),
+                InvitadoActivity.class));
+        finish();
     }
 
     public void login() {

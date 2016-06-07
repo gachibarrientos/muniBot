@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <EditText android:id="@+id/input_Edad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Edad" />
+    </android.support.design.widget.TextInputLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioEducacion"
+        android:gravity="center">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Educacion"
+            android:textStyle="bold"
+            android:typeface="sans"/>
+        <RadioButton
+            android:id="@+id/radioEducacionNin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ninguno"
+            />
+        <RadioButton
+            android:id="@+id/radioEducacionPri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Primario"
+            />
+        <RadioButton
+            android:id="@+id/radioEducacionSec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Secundario"
+            />
+        <RadioButton
+            android:id="@+id/radioEducacionTer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terciario"
+            />
+
+    </RadioGroup>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioEduAno"
+        android:gravity="center">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Año"
+            android:textStyle="bold"
+            android:typeface="sans"/>
+        <RadioButton
+            android:id="@+id/radioEduAnoUno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1ero"
+            />
+        <RadioButton
+            android:id="@+id/radioEduAnoDos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2do"
+            />
+        <RadioButton
+            android:id="@+id/radioEduAnoTre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3ro"
+            />
+        <RadioButton
+            android:id="@+id/radioEduAnoCua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4to"
+            />
+        <RadioButton
+            android:id="@+id/radioEduAnoCin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5to"
+            />
+        <RadioButton
+            android:id="@+id/radioEduAnoSei"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6to"
+            />
+
+
+    </RadioGroup>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_LoginInvitado"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        android:text="Ingresar"/>
+
+
+
+</LinearLayout>

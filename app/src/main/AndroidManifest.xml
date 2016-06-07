@@ -29,6 +29,14 @@
             >
         </activity>
         <activity
+            android:name=".Actividades.InvitadoActivity"
+            android:theme="@style/AppTheme.Dark">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Actividades.LoginActivity"
+                />
+        </activity>
+        <activity
             android:name=".Actividades.SplashActivity"
             android:label="@string/app_name" >
             <intent-filter>
