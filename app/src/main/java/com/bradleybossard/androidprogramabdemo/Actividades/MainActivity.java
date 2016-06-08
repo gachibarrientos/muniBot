@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +34,8 @@ public class MainActivity extends Activity {
     Bot bot;
     EditText txtRequest;
     TextView lblResponse;
-    Button btnOk, btnReconoce;
+    Button btnOk;
+    ImageButton btnReconoce;
 
     /*Habría que cargar 3 bots.. un munibotBajo, munibotMedio, munibotAlto
     y dependiendo de lo que obtenemos de nivel con el controlador difuso
@@ -52,7 +54,7 @@ public class MainActivity extends Activity {
         txtRequest = (EditText) findViewById(R.id.txtRequest);
         lblResponse = (TextView) findViewById(R.id.lblResponse);
         btnOk = (Button) findViewById(R.id.btnOk);
-        btnReconoce = (Button) findViewById(R.id.btnReconoce);
+        btnReconoce = (ImageButton) findViewById(R.id.btnReconoce);
         String nivelTecnologico = recogerExtras();
         botname = obtenerBotSegunNivel(nivelTecnologico);
         t1 = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
