@@ -1,5 +1,7 @@
 package com.bradleybossard.androidprogramabdemo.Actividades;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -27,11 +29,9 @@ public class InvitadoActivity extends AppCompatActivity{
     RadioGroup radioEducacion;
     @Bind(R.id.radioEduAno)
     RadioGroup radioEduAno;
-
     @Bind(R.id.input_Edad)
     EditText input_Edad;
-
-    @Bind(R.id.btn_Invitado)
+    @Bind(R.id.btn_LoginInvitado)
     Button btn_LoginInvitado;
 
     @Override
@@ -94,11 +94,35 @@ public class InvitadoActivity extends AppCompatActivity{
             public void onClick(View view) {
                 edad = Integer.valueOf(input_Edad.getText().toString().trim()).intValue();
                 nivel = obtenerNivel(edad, educ);
+                cargarMain();
                 System.out.println("Nivel tecnológico: "+nivel);
+                if(nivel!=""){
+                    cargarMain();
+                }
             }
         });
     }
-
+    private void cargarMain() {
+        final ProgressDialog progressDialog = new ProgressDialog(InvitadoActivity.this, R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Cargando...");
+        progressDialog.show();
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        // Al completar llamar al método correspondiente
+                        onChargeMainSucess();
+                        //onLoginFailed();
+                        progressDialog.dismiss();
+                    }
+                }, 3000);
+    }
+    public void onChargeMainSucess() {
+        Intent intent = new Intent(InvitadoActivity.this, MainActivity.class);
+        intent.putExtra("nivel", nivel);
+        startActivity(intent);
+        finish();
+    }
     public String obtenerNivel(int edad, float educ){
         String resultado="";
         try {

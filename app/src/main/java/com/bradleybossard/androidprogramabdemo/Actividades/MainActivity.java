@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
     darle el nombre aquí sobre qué bot cargar..
     */
 
-    String botname = "munibot";
+    String botname;
     TextToSpeech t1;
     Locale spanish = new Locale("es", "ES");
 
@@ -53,7 +53,8 @@ public class MainActivity extends Activity {
         lblResponse = (TextView) findViewById(R.id.lblResponse);
         btnOk = (Button) findViewById(R.id.btnOk);
         btnReconoce = (Button) findViewById(R.id.btnReconoce);
-
+        String nivelTecnologico = recogerExtras();
+        botname = obtenerBotSegunNivel(nivelTecnologico);
         t1 = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -62,7 +63,6 @@ public class MainActivity extends Activity {
                 }
             }
         });
-
         File fileExt = new File(getExternalFilesDir(null).getAbsolutePath() + "/bots");
 
         if (!fileExt.exists()) {
@@ -134,6 +134,28 @@ public class MainActivity extends Activity {
         });
     }
 
+    private String obtenerBotSegunNivel(String nivelTecnológico) {
+    String nombreBot="";
+        switch (nivelTecnológico){
+        case "Bajo":
+            nombreBot = "munibot";
+            break;
+        case "Medio":
+            nombreBot= "munibot";
+            break;
+        case "Alto":
+            nombreBot = "munibot";
+            break;
+    }
+        return nombreBot;
+    }
+
+    private String recogerExtras(){
+        Bundle extras= getIntent().getExtras();
+        String s= extras.getString("nivel");
+        return s;
+    }
+
 
     public void onActivityResult(int requestcode, int resultcode, Intent datos) {
         if (resultcode == Activity.RESULT_OK && datos != null) {
@@ -146,10 +168,6 @@ public class MainActivity extends Activity {
         }
 
     }
-
-
-
-
     public void onPause(){
         if(t1 !=null){
             t1.stop();
