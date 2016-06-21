@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -36,6 +37,7 @@ public class MainActivity extends Activity {
     TextView lblResponse;
     Button btnOk;
     ImageButton btnReconoce;
+    FloatingActionButton btnMapa;
 
     /*Habría que cargar 3 bots.. un munibotBajo, munibotMedio, munibotAlto
     y dependiendo de lo que obtenemos de nivel con el controlador difuso
@@ -132,6 +134,15 @@ public class MainActivity extends Activity {
                     obtenerRespuestas();
                 }
                 return false;
+            }
+        });
+
+        btnMapa= (FloatingActionButton) findViewById(R.id.btnMapa);
+        btnMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(),
+                        MapsActivity.class));
             }
         });
     }

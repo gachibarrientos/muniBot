@@ -4,5 +4,7 @@
     <string name="app_name">MuniBot</string>
     <string name="hello_world">Por favor espera mientras el bot esta cargando...</string>
     <string name="action_settings">Settings</string>
+    <string name="API_KEY">AIzaSyC1iTStKebrmNM3UsmPWDnZTRDuedEleCs</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
