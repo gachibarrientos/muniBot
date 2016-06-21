@@ -42,6 +42,14 @@ public class MapsActivity extends FragmentActivity implements DirectionFinderLis
     private ProgressDialog progressDialog;
     private LatLng c1 = new LatLng(-26.819435, -65.196931);
     private LatLng c2 = new LatLng(-26.822154, -65.198367);
+    private LatLng c3 = new LatLng(-26.8214819, -65.1971434);
+    private LatLng c4 = new LatLng(-26.8260748, -65.20046969999999);
+    private LatLng c5 = new LatLng(-26.8178911, -65.20537480000002);
+    private LatLng c6 = new LatLng(-26.817766, -65.20524390000003);
+    private LatLng c7 = new LatLng(-26.820211, -65.20849989999999);
+    private LatLng c8 = new LatLng(-26.8155761, -65.19632230000002);
+    private LatLng c9 = new LatLng(-26.8114052, -65.19524769999998);
+    private LatLng c10 = new LatLng(-26.8158918, -65.176105);
     private LatLng miPos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +86,41 @@ public class MapsActivity extends FragmentActivity implements DirectionFinderLis
                 .position(c2)
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
         m2.hideInfoWindow();
+        Marker m3= mMap.addMarker(new MarkerOptions()
+                .position(c3)
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
+        m3.hideInfoWindow();
+
+        Marker m4 =  mMap.addMarker(new MarkerOptions()
+                .position(c4)
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
+        m4.hideInfoWindow();
+        Marker m5 = mMap.addMarker(new MarkerOptions()
+                .position(c5)
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
+        m5.hideInfoWindow();
+
+        Marker m6 =  mMap.addMarker(new MarkerOptions()
+                .position(c6)
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
+        m6.hideInfoWindow();
+        Marker m7 = mMap.addMarker(new MarkerOptions()
+                .position(c7)
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
+        m7.hideInfoWindow();
+
+        Marker m8 =  mMap.addMarker(new MarkerOptions()
+                .position(c8)
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
+        m8.hideInfoWindow();
+        Marker m9 =  mMap.addMarker(new MarkerOptions()
+                .position(c9)
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
+        m9.hideInfoWindow();
+        Marker m10 =  mMap.addMarker(new MarkerOptions()
+                .position(c10)
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
+        m10.hideInfoWindow();
     }
 
     public void obtenerRuta(String origen, String destino){
@@ -91,8 +134,8 @@ public class MapsActivity extends FragmentActivity implements DirectionFinderLis
 
     @Override
     public void onDirectionFinderStart() {
-        progressDialog = ProgressDialog.show(this, "Please wait.",
-                "Finding direction..!", true);
+        progressDialog = ProgressDialog.show(this, "Espera por favor..",
+                "Buscando ruta mas corta..!", true);
 
         if (originMarkers != null) {
             for (Marker marker : originMarkers) {
@@ -121,15 +164,7 @@ public class MapsActivity extends FragmentActivity implements DirectionFinderLis
 
 
         for (Route route1  : route) {
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route1.endLocation, 14));
-
-          /*      originMarkers.add(mMap.addMarker(new MarkerOptions()
-                        .title(route1.startAddress)
-                        .position(route1.startLocation)));
-                destinationMarkers.add(mMap.addMarker(new MarkerOptions()
-                        .title(route1.endAddress)
-                        .position(route1.endLocation)));
-*/
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route1.endLocation, 16));
                 PolylineOptions polylineOptions = new PolylineOptions().
                         geodesic(true).
                         color(Color.BLUE).
