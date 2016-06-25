@@ -51,7 +51,7 @@
             android:id="@+id/radioEducacionTer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Terciario"
+            android:text="Terciario/Universitario"
             />
 
     </RadioGroup>

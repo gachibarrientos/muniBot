@@ -1,17 +1,19 @@
 package com.bradleybossard.androidprogramabdemo.Actividades;
-
-import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.graphics.Color;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.v4.app.ActivityCompat;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
 
+import com.bradleybossard.androidprogramabdemo.AlgoritmoGenetico.Algorithm;
+import com.bradleybossard.androidprogramabdemo.AlgoritmoGenetico.FitnessCalc;
+import com.bradleybossard.androidprogramabdemo.AlgoritmoGenetico.Individual;
+import com.bradleybossard.androidprogramabdemo.AlgoritmoGenetico.Population;
 import com.bradleybossard.androidprogramabdemo.Modelo.DirectionFinder;
 import com.bradleybossard.androidprogramabdemo.Modelo.DirectionFinderListener;
 import com.bradleybossard.androidprogramabdemo.Modelo.GPSTracker;
@@ -19,7 +21,6 @@ import com.bradleybossard.androidprogramabdemo.Modelo.Route;
 import com.bradleybossard.androidprogramabdemo.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -40,17 +41,21 @@ public class MapsActivity extends FragmentActivity implements DirectionFinderLis
     private List<Marker> destinationMarkers = new ArrayList<>();
     private List<Polyline> polylinePaths = new ArrayList<>();
     private ProgressDialog progressDialog;
-    private LatLng c1 = new LatLng(-26.819435, -65.196931);
-    private LatLng c2 = new LatLng(-26.822154, -65.198367);
-    private LatLng c3 = new LatLng(-26.8214819, -65.1971434);
-    private LatLng c4 = new LatLng(-26.8260748, -65.20046969999999);
+    private LatLng c1 = new LatLng(-26.814533, -65.200552);
+    private LatLng c2 = new LatLng(-26.816189, -65.190617);
+    private LatLng c3 = new LatLng(-26.827220, -65.202093);
+  /*  private LatLng c4 = new LatLng(-26.8260748, -65.20046969999999);
     private LatLng c5 = new LatLng(-26.8178911, -65.20537480000002);
     private LatLng c6 = new LatLng(-26.817766, -65.20524390000003);
     private LatLng c7 = new LatLng(-26.820211, -65.20849989999999);
     private LatLng c8 = new LatLng(-26.8155761, -65.19632230000002);
     private LatLng c9 = new LatLng(-26.8114052, -65.19524769999998);
     private LatLng c10 = new LatLng(-26.8158918, -65.176105);
+    */
     private LatLng miPos;
+    private String area;
+    private FloatingActionButton btnBuscar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,10 +68,7 @@ public class MapsActivity extends FragmentActivity implements DirectionFinderLis
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setOnMarkerClickListener(this);
         cargarMarcadores();
-
-
         GPSTracker gpsTracker = new GPSTracker(MapsActivity.this);
-
         if (gpsTracker.canGetLocation()) {
             miPos = new LatLng(gpsTracker.getLatitude(), gpsTracker.getLongitude());
             Log.i("Debug", "Mi posicion on create:" + miPos);
@@ -74,8 +76,15 @@ public class MapsActivity extends FragmentActivity implements DirectionFinderLis
         } else {
             gpsTracker.showSettingsAlert();
         }
+        btnBuscar = (FloatingActionButton) findViewById(R.id.btnMapa);
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String origen = miPos.toString().replace("lat/lng: ","").replace("(","").replace(")","");
+                obtenerRutaconAG(origen);
+            }
+        });
     }
-
     private void cargarMarcadores() {
         Marker m1 = mMap.addMarker(new MarkerOptions()
                 .position(c1)
@@ -90,7 +99,7 @@ public class MapsActivity extends FragmentActivity implements DirectionFinderLis
                 .position(c3)
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
         m3.hideInfoWindow();
-
+/*
         Marker m4 =  mMap.addMarker(new MarkerOptions()
                 .position(c4)
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
@@ -121,6 +130,7 @@ public class MapsActivity extends FragmentActivity implements DirectionFinderLis
                 .position(c10)
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ciudadana)));
         m10.hideInfoWindow();
+        */
     }
 
     public void obtenerRuta(String origen, String destino){
@@ -184,6 +194,85 @@ public class MapsActivity extends FragmentActivity implements DirectionFinderLis
         System.out.println("Las coordenadas de origen:" + origen + " Las coordenadas de destino:"+destino);
         obtenerRuta(origen,destino);
         return false;
+    }
+    private void obtenerRutaconAG(String origen) {
+        LatLng destino = obtenerPuntoMasCercano();
+        if (destino.equals(c1)) {
+            FitnessCalc.setSolution("00000000000111110000000001000000000100000000010000000001");
+            //Creamos una población
+            Individual mejor = generarPoblacion();
+            obtenerRuta(origen,destino.toString().replace("lat/lng: ","").replace("(","").replace(")",""));
+        } else if (destino.equals(c2)) {
+            FitnessCalc.setSolution("00000000000000011111000001000000000100000000010000000001");
+            //Creamos una población
+            Individual mejor = generarPoblacion();
+            obtenerRuta(origen,destino.toString().replace("lat/lng: ","").replace("(","").replace(")",""));
+        } else if (destino.equals(c3)) {
+            FitnessCalc.setSolution("00000000000000000000000000000000000000000000000000000010000000001000000000100000000010000000111");
+            //Creamos una población
+            Individual mejor = generarPoblacion();
+            obtenerRuta(origen,destino.toString().replace("lat/lng: ","").replace("(","").replace(")",""));
+        }
+    }
+
+    private LatLng obtenerPuntoMasCercano() {
+        LatLng destino = null;
+        float distancias[] = new float[3];
+        Location origen = new Location("origen");
+        origen.setLatitude(miPos.latitude);
+        origen.setLongitude(miPos.longitude);
+        Location locationA = new Location("puntocarga1");
+        locationA.setLatitude(c1.latitude);
+        locationA.setLongitude(c2.longitude);
+        Location locationB = new Location("puntocarga2");
+        locationB.setLatitude(c1.latitude);
+        locationB.setLongitude(c2.longitude);
+        Location locationC = new Location("puntocarga3");
+        locationC.setLatitude(c1.latitude);
+        locationC.setLongitude(c2.longitude);
+        float distanceOA = origen.distanceTo(locationA);
+        distancias[0]=distanceOA;
+        float distanceOB = origen.distanceTo(locationB);
+        distancias[1]=distanceOB;
+        float distanceOC = origen.distanceTo(locationC);
+        distancias[2]=distanceOC;
+        float mayor = 0;
+        int pos=0;
+        for (int i=0;i<distancias.length;i++){
+            if(distancias[i]>mayor){
+                mayor=distancias[i];
+                pos=i;
+            }
+        }
+        switch (pos) {
+            case 0:
+                destino = new LatLng(c1.latitude,c1.longitude);
+                break;
+            case 1:
+                destino = new LatLng(c1.latitude,c1.longitude);
+                break;
+            case 2:
+                destino = new LatLng(c1.latitude,c1.longitude);
+                break;
+        }
+        return destino;
+    }
+
+    private Individual generarPoblacion() {
+        Population myPop = new Population(4, true);
+        //Generamos y mutamos de acuerdo a la población inicial
+        int generationCount = 0;
+        System.out.println("Generando población..");
+        while (myPop.getFittest().getFitness() < FitnessCalc.getMaxFitness()) {
+            generationCount++;
+            System.out.println("Generación n°: " + generationCount);
+            myPop = Algorithm.evolvePopulation(myPop);
+        }
+        System.out.println("Solucion encontrada!!");
+        System.out.println("El mejor individuo es de la generación n°: " + generationCount);
+        System.out.println("Genes:");
+        System.out.println(myPop.getFittest());
+        return myPop.getFittest();
     }
 }
 
